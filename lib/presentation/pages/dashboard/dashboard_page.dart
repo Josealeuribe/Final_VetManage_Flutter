@@ -1,34 +1,21 @@
 import 'package:flutter/material.dart';
-import 'widgets/dashboard_header.dart';
+import 'package:project_end/shared/widgets/base_page.dart';
 import 'widgets/dashboard_cards.dart';
 import 'widgets/dashboard_sales_chart.dart';
 import 'widgets/dashboard_stock_chart.dart';
-import 'widgets/dashboard_bottom_nav.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
-        child: DashboardHeader(),
-      ),
-
+    return BasePage(
+      title: "Dashboard",
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             SizedBox(height: 10),
-            Text(
-              "Dashboard",
-              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 4),
             Text(
               "Bienvenido al panel de control de VManage",
               style: TextStyle(fontSize: 15, color: Colors.black54),
@@ -42,8 +29,6 @@ class DashboardPage extends StatelessWidget {
           ],
         ),
       ),
-
-      bottomNavigationBar: const DashboardBottomNav(),
     );
   }
 }
