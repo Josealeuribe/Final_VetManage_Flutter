@@ -15,7 +15,7 @@ class ComprasPage extends StatelessWidget {
         onTap: (i) {
           switch (i) {
             case 0:
-              Navigator.pushReplacementNamed(context, "/compras");
+              Navigator.pushReplacementNamed(context, "/dashboard");
               break;
 
             case 1:

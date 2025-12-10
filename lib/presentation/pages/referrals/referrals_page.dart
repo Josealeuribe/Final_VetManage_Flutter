@@ -15,7 +15,7 @@ class RemisionesPage extends StatelessWidget {
         onTap: (i) {
           switch (i) {
             case 0:
-              Navigator.pushReplacementNamed(context, "/remisiones");
+              Navigator.pushReplacementNamed(context, "/dashboard");
               break;
 
             case 1:

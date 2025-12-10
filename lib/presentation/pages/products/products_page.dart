@@ -23,7 +23,7 @@ class _ProductosPageState extends State<ProductosPage> {
         onTap: (i) {
           switch (i) {
             case 0:
-              Navigator.pushReplacementNamed(context, "/productos");
+              Navigator.pushReplacementNamed(context, "/dashboard");
               break;
 
             case 1:

@@ -16,7 +16,7 @@ class ReportesPage extends StatelessWidget {
         onTap: (i) {
           switch (i) {
             case 0:
-              // Ir a la página de Dashboard
+              Navigator.pushReplacementNamed(context, "/dashboard");
               break;
 
             case 1:

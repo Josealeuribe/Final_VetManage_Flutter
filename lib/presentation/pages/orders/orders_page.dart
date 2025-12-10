@@ -22,7 +22,7 @@ class _OrdersPageState extends State<OrdersPage> {
         onTap: (i) {
           switch (i) {
             case 0:
-              Navigator.pushReplacementNamed(context, "/ordenes");
+              Navigator.pushReplacementNamed(context, "/dashboard");
               break;
 
             case 1:

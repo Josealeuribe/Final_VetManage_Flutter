@@ -57,7 +57,7 @@ class CustomBottomNav extends StatelessWidget {
                       radius: 28,
                       backgroundColor: const Color.fromARGB(105, 76, 175, 79),
                       child: Icon(
-                        items[index]["icon"],
+                        items[index]["icon"], 
                         size: 28,
                         color: const Color.fromARGB(185, 33, 149, 243),
                       ),
