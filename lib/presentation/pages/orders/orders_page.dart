@@ -2,20 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:project_end/widgets/custom_appbar.dart';
 import 'package:project_end/widgets/custom_bottom_nav.dart';
 
-class ExistenciasPage extends StatelessWidget {
-  const ExistenciasPage({super.key});
+class OrdersPage extends StatefulWidget {
+  const OrdersPage({super.key});
+
+  @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage> {
+  int navIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      backgroundColor: const Color(0xFFF5F7FA),
+
       bottomNavigationBar: CustomBottomNav(
-        currentIndex: 2, // Dashboard siempre es el índice 0
+        currentIndex: 3, // Dashboard siempre es el índice 0
         onTap: (i) {
           switch (i) {
             case 0:
-              Navigator.pushReplacementNamed(context, "/dashboard");
+              Navigator.pushReplacementNamed(context, "/ordenes");
               break;
 
             case 1:
@@ -33,40 +40,47 @@ class ExistenciasPage extends StatelessWidget {
         },
       ),
 
+      backgroundColor: const Color(0xFFF5F7FA),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _header(Icons.storage, "Existencias"),
+            _header(Icons.list_alt, "Órdenes"),
             const SizedBox(height: 20),
-            _placeholder("Visualización de existencias."),
+
+            _placeholder("Aquí aparecerá la lista de órdenes."),
           ],
         ),
       ),
     );
   }
 
-  Widget _header(IconData icon, String title) => Row(
-    children: [
-      Icon(icon, size: 28, color: Colors.blue),
-      const SizedBox(width: 10),
-      Text(
-        title,
-        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-    ],
-  );
+  Widget _header(IconData icon, String title) {
+    return Row(
+      children: [
+        Icon(icon, size: 28, color: Colors.blue),
+        const SizedBox(width: 10),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
 
-  Widget _placeholder(String text) => Container(
-    padding: const EdgeInsets.all(20),
-    width: double.infinity,
-    decoration: _box(),
-    child: Text(
-      text,
-      style: const TextStyle(fontSize: 16, color: Colors.black54),
-    ),
-  );
+  Widget _placeholder(String text) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: _box(),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 16, color: Colors.black54),
+      ),
+    );
+  }
 
   BoxDecoration _box() => BoxDecoration(
     color: Colors.white,

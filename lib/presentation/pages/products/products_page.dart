@@ -1,40 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:project_end/widgets/custom_appbar.dart';
+import 'package:project_end/widgets/custom_bottom_nav.dart';
 
-class ProductsPage extends StatelessWidget {
-  const ProductsPage({super.key});
+class ProductosPage extends StatefulWidget {
+  const ProductosPage({super.key});
+
+  @override
+  State<ProductosPage> createState() => _ProductosPageState();
+}
+
+class _ProductosPageState extends State<ProductosPage> {
+  int navIndex = 2;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Productos",
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
-          const Text("Listado de productos disponibles"),
-          const SizedBox(height: 20),
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      backgroundColor: const Color(0xFFF5F7FA),
 
-          _card("Producto A", "Categoría: General"),
-          _card("Producto B", "Categoría: General"),
-          _card("Producto C", "Categoría: Electrónica"),
-        ],
+      bottomNavigationBar: CustomBottomNav(
+        currentIndex: 3, // Dashboard siempre es el índice 0
+        onTap: (i) {
+          switch (i) {
+            case 0:
+              Navigator.pushReplacementNamed(context, "/productos");
+              break;
+
+            case 1:
+              Navigator.pushReplacementNamed(context, "/traslados");
+              break;
+
+            case 2:
+              Navigator.pushReplacementNamed(context, "/existencias");
+              break;
+
+            case 3:
+              // "Más" se abre solo desde el CustomBottomNav
+              break;
+          }
+        },
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _header(Icons.inventory_2_rounded, "Productos"),
+            const SizedBox(height: 20),
+            _placeholder("Aquí verás los productos."),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _card(String name, String subtitle) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        title: Text(name),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-        onTap: () {},
+  Widget _header(IconData icon, String title) => Row(
+    children: [
+      Icon(icon, size: 28, color: Colors.blue),
+      const SizedBox(width: 10),
+      Text(
+        title,
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
-    );
-  }
+    ],
+  );
+
+  Widget _placeholder(String text) => Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(20),
+    decoration: _box(),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 16, color: Colors.black54),
+    ),
+  );
+
+  BoxDecoration _box() => BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(14),
+    boxShadow: [
+      BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 6),
+    ],
+  );
 }

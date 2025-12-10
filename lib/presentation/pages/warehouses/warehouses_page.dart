@@ -1,75 +1,112 @@
 import 'package:flutter/material.dart';
-import 'package:project_end/shared/widgets/base_page.dart';
+import 'package:project_end/widgets/custom_appbar.dart';
+import 'package:project_end/widgets/custom_bottom_nav.dart';
 
-class WarehousesPage extends StatelessWidget {
-  const WarehousesPage({super.key});
+class BodegasPage extends StatelessWidget {
+  const BodegasPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final warehouses = [
-      {"name": "Bodega Central", "location": "Guayaquil", "code": "BDG-01"},
-      {"name": "Bodega Norte", "location": "Quito", "code": "BDG-02"},
-      {"name": "Bodega Sucursal", "location": "Cuenca", "code": "BDG-03"},
-    ];
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      backgroundColor: const Color(0xFFF5F7FA),
 
-    return BasePage(
-      title: "Bodegas", // esto se usa en AppHeader
-      body: ListView.builder(
-        itemCount: warehouses.length,
-        itemBuilder: (context, i) {
-          final w = warehouses[i];
-          return Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.warehouse_rounded,
-                  size: 40,
-                  color: Colors.blue,
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        w["name"]!,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        w["location"]!,
-                        style: const TextStyle(color: Colors.black54),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        w["code"]!,
-                        style: const TextStyle(color: Colors.blue),
-                      ),
-                    ],
-                  ),
-                ),
-                const Icon(Icons.arrow_forward_ios_rounded, size: 18),
-              ],
-            ),
-          );
+      bottomNavigationBar: CustomBottomNav(
+        currentIndex: 3, // Dashboard siempre es el índice 0
+        onTap: (i) {
+          switch (i) {
+            case 0:
+              Navigator.pushReplacementNamed(context, "/bdoegas");
+              break;
+
+            case 1:
+              Navigator.pushReplacementNamed(context, "/traslados");
+              break;
+
+            case 2:
+              Navigator.pushReplacementNamed(context, "/existencias");
+              break;
+
+            case 3:
+              // "Más" se abre solo desde el CustomBottomNav
+              break;
+          }
         },
-        padding: const EdgeInsets.all(20),
+      ),
+
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Bodegas",
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Gestión de bodegas y almacenes",
+              style: TextStyle(color: Colors.grey[700], fontSize: 14),
+            ),
+
+            const SizedBox(height: 20),
+
+            _card(
+              title: "Total Bodegas",
+              value: "12",
+              icon: Icons.home_work,
+              color: Colors.blue,
+            ),
+
+            const SizedBox(height: 12),
+
+            _card(
+              title: "Inventario Global",
+              value: "127.430 Items",
+              icon: Icons.inventory,
+              color: Colors.green,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _card({
+    required String title,
+    required String value,
+    required IconData icon,
+    required Color color,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 6),
+        ],
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundColor: color.withOpacity(.15),
+            child: Icon(icon, color: color),
+          ),
+          const SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w600)),
+              Text(
+                value,
+                style: const TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold),
+              )
+            ],
+          )
+        ],
       ),
     );
   }

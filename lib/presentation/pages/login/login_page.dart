@@ -4,7 +4,6 @@ import '../../blocs/login/login_bloc.dart';
 import '../../blocs/login/login_event.dart';
 import '../../blocs/login/login_state.dart';
 import '../dashboard/dashboard_page.dart';
-import '../recover_password/recover_password_page.dart';
 import '../../blocs/recover/recover_bloc.dart';
 
 class LoginPage extends StatelessWidget {
