@@ -7,7 +7,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: const Color.fromARGB(84, 75, 101, 144),
+      backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
       automaticallyImplyLeading: false,
       centerTitle: true,
 
@@ -16,13 +16,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Image.asset(
             "assets/VSinFondo.png",
-            height: 28,
+            height: 28, // El logo sin bordes
           ),
           const SizedBox(width: 8),
           const Text(
             "Manage",
             style: TextStyle(
-              color: Colors.black87,
+              color: Colors.white, // Texto blanco
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
@@ -32,17 +32,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       actions: [
         IconButton(
-          icon: const Icon(Icons.sync, color: Colors.blue),
+          icon: const Icon(Icons.sync, color: Colors.white), // Botón blanco
           onPressed: () {},
         ),
         IconButton(
-          icon: const Icon(Icons.notifications, color: Colors.blue),
+          icon: const Icon(Icons.notifications, color: Colors.white), // Botón blanco
           onPressed: () {},
         ),
 
         /// ===== MENÚ DE USUARIO =====
         PopupMenuButton<String>(
-          icon: const Icon(Icons.person, color: Colors.blue),
+          icon: const Icon(Icons.person, color: Colors.white), // Botón blanco
           onSelected: (value) {
             switch (value) {
               case "profile":
@@ -70,13 +70,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
           itemBuilder: (context) => [
             const PopupMenuItem(
-                value: "profile", child: Text("Editar Perfil")),
+                value: "profile", child: Text("Editar Perfil", style: TextStyle(color: Colors.black))),
             const PopupMenuItem(
-                value: "password", child: Text("Cambiar Contraseña")),
+                value: "password", child: Text("Cambiar Contraseña", style: TextStyle(color: Colors.black))),
             const PopupMenuItem(
-                value: "settings", child: Text("Configuración")),
+                value: "settings", child: Text("Configuración", style: TextStyle(color: Colors.black))),
             const PopupMenuItem(
-                value: "help", child: Text("Ayuda")),
+                value: "help", child: Text("Ayuda", style: TextStyle(color: Colors.black))),
 
             const PopupMenuDivider(),
 

@@ -14,18 +14,54 @@ class CustomBottomNav extends StatelessWidget {
   void _openMoreMenu(BuildContext context) {
     final List<Map<String, dynamic>> items = [
       {"icon": Icons.receipt, "label": "Órdenes", "route": AppRoutes.ordenes},
-      {"icon": Icons.attach_money, "label": "Pagos y Abonos", "route": AppRoutes.pagosAbonos},
-      {"icon": Icons.inventory_2, "label": "Existencias", "route": AppRoutes.existencias},
+      {
+        "icon": Icons.attach_money,
+        "label": "Pagos y Abonos",
+        "route": AppRoutes.pagosAbonos,
+      },
+      {
+        "icon": Icons.inventory_2,
+        "label": "Existencias",
+        "route": AppRoutes.existencias,
+      },
       {"icon": Icons.people, "label": "Clientes", "route": AppRoutes.clientes},
-      {"icon": Icons.store, "label": "Proveedores", "route": AppRoutes.proveedores},
-      {"icon": Icons.swap_horiz, "label": "Traslados", "route": AppRoutes.traslados}, 
-      {"icon": Icons.supervisor_account, "label": "Usuarios", "route": AppRoutes.usuarios},
+      {
+        "icon": Icons.store,
+        "label": "Proveedores",
+        "route": AppRoutes.proveedores,
+      },
+      {
+        "icon": Icons.swap_horiz,
+        "label": "Traslados",
+        "route": AppRoutes.traslados,
+      },
+      {
+        "icon": Icons.supervisor_account,
+        "label": "Usuarios",
+        "route": AppRoutes.usuarios,
+      },
       {"icon": Icons.security, "label": "Roles", "route": AppRoutes.roles},
-      {"icon": Icons.assignment, "label": "Remisiones", "route": AppRoutes.remisiones},
-      {"icon": Icons.shopping_cart, "label": "Compras", "route": AppRoutes.compras},
+      {
+        "icon": Icons.assignment,
+        "label": "Remisiones",
+        "route": AppRoutes.remisiones,
+      },
+      {
+        "icon": Icons.shopping_cart,
+        "label": "Compras",
+        "route": AppRoutes.compras,
+      },
       {"icon": Icons.warehouse, "label": "Bodegas", "route": AppRoutes.bodegas},
-      {"icon": Icons.production_quantity_limits, "label": "Productos", "route": AppRoutes.productos},
-      {"icon": Icons.dashboard, "label": "Dashboard", "route": AppRoutes.dashboard}
+      {
+        "icon": Icons.production_quantity_limits,
+        "label": "Productos",
+        "route": AppRoutes.productos,
+      },
+      {
+        "icon": Icons.dashboard,
+        "label": "Dashboard",
+        "route": AppRoutes.dashboard,
+      },
     ];
 
     showModalBottomSheet(
@@ -55,11 +91,18 @@ class CustomBottomNav extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 28,
-                      backgroundColor: const Color.fromARGB(105, 76, 175, 79),
+                      backgroundColor: const Color.fromARGB(
+                        255, 44, 97, 255
+                      ), // Fondo azul
                       child: Icon(
-                        items[index]["icon"], 
+                        items[index]["icon"],
                         size: 28,
-                        color: const Color.fromARGB(185, 33, 149, 243),
+                        color: const Color.fromARGB(
+                          255,
+                          255,
+                          255,
+                          255,
+                        ), // Íconos blancos
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -84,7 +127,7 @@ class CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: const Color.fromARGB(113, 217, 234, 225),
+      backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Cambié el fondo del contenedor a blanco, puedes poner el color que desees
       currentIndex: currentIndex,
       onTap: (i) {
         if (i == 3) {
@@ -94,24 +137,54 @@ class CustomBottomNav extends StatelessWidget {
         }
       },
 
-      selectedItemColor: const Color.fromARGB(182, 28, 82, 199),
-      unselectedItemColor: const Color.fromARGB(207, 98, 193, 117),
+      selectedItemColor: const Color.fromARGB(255, 44, 97, 255), // Íconos seleccionados en negro
+      unselectedItemColor: const Color.fromARGB(255, 44, 97, 255), // Íconos no seleccionados en negro
 
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.dashboard_outlined),
+          icon: CircleAvatar(
+            backgroundColor: const Color.fromARGB(
+              255, 44, 97, 255
+            ), // Fondo negro para los íconos
+            child: Icon(
+              Icons.dashboard_outlined,
+              color: Colors.white,
+              size: 28,
+            ), // Ícono blanco
+          ),
           label: "Dashboard",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.swap_horiz),
+          icon: CircleAvatar(
+            backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+            child: Icon(
+              Icons.swap_horiz,
+              color: Colors.white,
+              size: 28,
+            ), // Ícono blanco
+          ),
           label: "Traslados",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.inventory),
+          icon: CircleAvatar(
+            backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+            child: Icon(
+              Icons.inventory,
+              color: Colors.white,
+              size: 28,
+            ), // Ícono blanco
+          ),
           label: "Existencias",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.menu),
+          icon: CircleAvatar(
+            backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 28,
+            ), // Ícono blanco
+          ),
           label: "Más",
         ),
       ],

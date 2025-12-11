@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(
-          backgroundColor: const Color(0xFF1E66FF), // Color del header
+          backgroundColor: const Color.fromARGB(255, 37, 66, 255), // Color del header
           automaticallyImplyLeading: false, // Elimina el botón de "volver"
         ),
       ),
@@ -236,7 +236,7 @@ class LoginPage extends StatelessWidget {
 
       // Footer
       bottomNavigationBar: Container(
-        color: const Color(0xFF4CAF50), // Verde como en el logo
+        color: const Color.fromARGB(255, 37, 66, 255), // Verde como en el logo
         height: 50,
         child: Center(
           child: const Text(
