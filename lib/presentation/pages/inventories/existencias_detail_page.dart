@@ -11,12 +11,18 @@ class DetalleExistenciaPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detalle del producto"),
+        elevation: 0,
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0.5,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black87),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          "Detalle de Existencia",
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
-      backgroundColor: const Color(0xFFF5F7FA),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(18),

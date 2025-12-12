@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class RolesDetallePage extends StatelessWidget {
-  final String nombre;
-  final String descripcion;
-  final List<String> permisos;
+class OrdenDetallePage extends StatelessWidget {
+  final String codigo;
+  final String cliente;
+  final String fecha;
+  final int total;
   final String estado;
 
-  const RolesDetallePage({
+  const OrdenDetallePage({
     super.key,
-    required this.nombre,
-    required this.descripcion,
-    required this.permisos,
+    required this.codigo,
+    required this.cliente,
+    required this.fecha,
+    required this.total,
     required this.estado,
   });
 
@@ -27,13 +29,13 @@ class RolesDetallePage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          "Detalle de Rol",
+          "Detalle de Orden",
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
 
-      bottomNavigationBar: SafeArea(
+            bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: ElevatedButton(
@@ -41,14 +43,9 @@ class RolesDetallePage extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
               padding: const EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            child: const Text(
-              "Cerrar",
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
+            child: const Text("Cerrar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
         ),
       ),
@@ -62,12 +59,14 @@ class RolesDetallePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             _section(
-              title: "Información del Rol",
+              title: "Información de la Orden",
               content: Column(
                 children: [
-                  _item("Nombre del rol", nombre),
+                  _item("Código", codigo),
+                  _item("Cliente", cliente),
+                  _item("Fecha", fecha),
                   _item("Estado", estado),
-                  _item("Descripción", descripcion),
+                  _item("Total", "\$$total"),
                 ],
               ),
             ),
@@ -75,11 +74,13 @@ class RolesDetallePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             _section(
-              title: "Permisos asignados",
-              content: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: permisos.map((p) => _chip(p)).toList(),
+              title: "Productos",
+              content: Column(
+                children: [
+                  _product("Arroz 50kg", 2, 120000),
+                  _product("Aceite 20L", 1, 60000),
+                  _product("Azúcar 25kg", 3, 90000),
+                ],
               ),
             ),
           ],
@@ -88,18 +89,18 @@ class RolesDetallePage extends StatelessWidget {
     );
   }
 
+  // HEADER ------------------------------
   Widget _header() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       decoration: _box(),
       child: Row(
         children: [
           CircleAvatar(
-            radius: 30,
+            radius: 28,
             backgroundColor: Colors.blue.shade100,
-            child: Icon(Icons.shield, color: Colors.blue.shade700, size: 34),
+            child: Icon(Icons.receipt, color: Colors.blue.shade800, size: 34),
           ),
-
           const SizedBox(width: 16),
 
           Expanded(
@@ -107,7 +108,7 @@ class RolesDetallePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  nombre,
+                  codigo,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -115,17 +116,18 @@ class RolesDetallePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  descripcion,
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+                  cliente,
+                  style: TextStyle(color: Colors.grey.shade600),
                 ),
               ],
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
+  // SECTION ------------------------------
   Widget _section({required String title, required Widget content}) {
     return Container(
       padding: const EdgeInsets.all(18),
@@ -135,33 +137,35 @@ class RolesDetallePage extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 14),
           content,
         ],
       ),
     );
   }
 
+  // INFO ITEM ------------------------------
   Widget _item(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         children: [
           Expanded(
-            flex: 3,
             child: Text(
               label,
-              style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
+              style: TextStyle(color: Colors.grey.shade600),
             ),
           ),
           Expanded(
-            flex: 4,
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),
         ],
@@ -169,33 +173,45 @@ class RolesDetallePage extends StatelessWidget {
     );
   }
 
-  Widget _chip(String text) {
+  // PRODUCTO LISTADO ----------------------
+  Widget _product(String nombre, int cantidad, int subtotal) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.blue.shade50,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.blue.shade100),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.blue.shade800,
-          fontWeight: FontWeight.w600,
-        ),
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 5,
+            child: Text(
+              nombre,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Text("x$cantidad"),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              "\$$subtotal",
+              textAlign: TextAlign.right,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
     );
   }
 
+  // BOX DECORATION -------------------------
   BoxDecoration _box() => BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(14),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.black.withOpacity(0.05),
-        blurRadius: 6,
-        offset: const Offset(0, 2),
-      ),
-    ],
-  );
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 6,
+          ),
+        ],
+      );
 }

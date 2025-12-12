@@ -4,7 +4,7 @@ import '../../blocs/login/login_bloc.dart';
 import '../../blocs/login/login_event.dart';
 import '../../blocs/login/login_state.dart';
 import '../dashboard/dashboard_page.dart';
-import '../../blocs/recover/recover_bloc.dart';
+import '../driver/driver_dashboard.dart'; // NUEVA IMPORTACIÓN
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -16,23 +16,27 @@ class LoginPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(
-          backgroundColor: const Color.fromARGB(255, 37, 66, 255), // Color del header
-          automaticallyImplyLeading: false, // Elimina el botón de "volver"
+          backgroundColor: const Color.fromARGB(255, 37, 66, 255),
+          automaticallyImplyLeading: false,
         ),
       ),
       body: SafeArea(
         child: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
-            // Verificamos si el login fue exitoso
             if (state.isSuccess) {
-              // Redirigir al Dashboard
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const DashboardPage()),
-              );
+              if (state.role == "admin") {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => const DashboardPage()),
+                );
+              } else if (state.role == "conductor") {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => const DriverDashboard()),
+                );
+              }
             }
 
-            // Mostrar errores si los hay
             if (state.errorMessage != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -42,11 +46,12 @@ class LoginPage extends StatelessWidget {
               );
             }
 
-            // Mostrar éxito de recuperación de contraseña
             if (state.isRecoverySuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: const Text("Se ha enviado un link de recuperación a tu correo"),
+                  content: const Text(
+                    "Se ha enviado un link de recuperación a tu correo",
+                  ),
                   backgroundColor: Colors.green,
                 ),
               );
@@ -57,23 +62,18 @@ class LoginPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // LOGO SUPERIOR
-                  Image.asset(
-                    'assets/VManage.png',
-                    height: 100, // Ajustamos el tamaño
-                  ),
-
+                  Image.asset('assets/VManage.png', height: 100),
                   const SizedBox(height: 45),
 
-                  // CARD FORMULARIO LOGIN
+                  // CARD LOGIN
                   Container(
                     padding: const EdgeInsets.all(22),
                     margin: const EdgeInsets.symmetric(horizontal: 30),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20), // Más redondeado
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.4), // Más sombra
+                          color: Colors.grey.withOpacity(0.4),
                           spreadRadius: 5,
                           blurRadius: 10,
                         ),
@@ -85,68 +85,75 @@ class LoginPage extends StatelessWidget {
                       children: [
                         const Text(
                           "Usuario",
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 6),
 
-                        // USERNAME con icono
                         BlocBuilder<LoginBloc, LoginState>(
                           builder: (context, state) {
                             return TextField(
-                              onChanged: (value) {
-                                context.read<LoginBloc>().add(
-                                      LoginUsernameChanged(value),
-                                    );
-                              },
+                              onChanged: (value) => context
+                                  .read<LoginBloc>()
+                                  .add(LoginUsernameChanged(value)),
                               decoration: InputDecoration(
                                 hintText: "Ingrese su usuario",
-                                prefixIcon: Icon(Icons.person, color: Colors.blue),
+                                prefixIcon: Icon(
+                                  Icons.person,
+                                  color: Colors.blue,
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(color: Colors.blue),
                                 ),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
                               ),
                             );
                           },
                         ),
 
                         const SizedBox(height: 20),
-
                         const Text(
                           "Contraseña",
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 6),
 
-                        // PASSWORD con icono
                         BlocBuilder<LoginBloc, LoginState>(
                           builder: (context, state) {
                             return TextField(
                               obscureText: state.isPasswordObscured,
-                              onChanged: (value) {
-                                context.read<LoginBloc>().add(
-                                      LoginPasswordChanged(value),
-                                    );
-                              },
+                              onChanged: (value) => context
+                                  .read<LoginBloc>()
+                                  .add(LoginPasswordChanged(value)),
                               decoration: InputDecoration(
                                 hintText: "Ingrese su contraseña",
-                                prefixIcon: Icon(Icons.lock, color: Colors.blue),
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: Colors.blue,
+                                ),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     state.isPasswordObscured
                                         ? Icons.visibility_off
                                         : Icons.visibility,
                                   ),
-                                  onPressed: () {
-                                    context.read<LoginBloc>().add(TogglePasswordVisibility()); // Alternar visibilidad
-                                  },
+                                  onPressed: () => context
+                                      .read<LoginBloc>()
+                                      .add(TogglePasswordVisibility()),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(color: Colors.blue),
                                 ),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
                               ),
                             );
                           },
@@ -154,7 +161,6 @@ class LoginPage extends StatelessWidget {
 
                         const SizedBox(height: 22),
 
-                        // BOTÓN LOGIN
                         BlocBuilder<LoginBloc, LoginState>(
                           builder: (context, state) {
                             return SizedBox(
@@ -162,19 +168,15 @@ class LoginPage extends StatelessWidget {
                               height: 45,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF1E66FF), // Color del botón
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
+                                  backgroundColor: const Color(0xFF1E66FF),
+                                  foregroundColor: Colors
+                                      .white, // <-- Esto asegura texto/blanco e íconos blancos
                                 ),
                                 onPressed: state.isSubmitting
                                     ? null
-                                    : () {
-                                        context.read<LoginBloc>().add(
-                                              LoginSubmitted(),
-                                            );
-                                      },
+                                    : () => context.read<LoginBloc>().add(
+                                        LoginSubmitted(),
+                                      ),
                                 child: state.isSubmitting
                                     ? const SizedBox(
                                         width: 22,
@@ -184,7 +186,14 @@ class LoginPage extends StatelessWidget {
                                           strokeWidth: 2,
                                         ),
                                       )
-                                    : const Text("Iniciar sesión"),
+                                    : const Text(
+                                        "Iniciar sesión",
+                                        style: TextStyle(
+                                          color:
+                                              Colors.white, // <-- Texto blanco
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                               ),
                             );
                           },
@@ -192,11 +201,13 @@ class LoginPage extends StatelessWidget {
 
                         const SizedBox(height: 15),
 
-                        // ENLACE PARA RECUPERAR CONTRASEÑA
                         GestureDetector(
                           onTap: () {
-                            // Validar si el usuario está vacío antes de proceder con la recuperación de contraseña
-                            if (context.read<LoginBloc>().state.username.isEmpty) {
+                            if (context
+                                .read<LoginBloc>()
+                                .state
+                                .username
+                                .isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text("Digite primero un usuario"),
@@ -204,7 +215,9 @@ class LoginPage extends StatelessWidget {
                                 ),
                               );
                             } else {
-                              context.read<LoginBloc>().add(PasswordRecoveryRequested());
+                              context.read<LoginBloc>().add(
+                                PasswordRecoveryRequested(),
+                              );
                             }
                           },
                           child: const Text(
@@ -221,12 +234,7 @@ class LoginPage extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 40),
-
-                  // LOGO GVM
-                  Image.asset(
-                    'assets/GVMLogo.png',
-                    height: 70,
-                  ),
+                  Image.asset('assets/GVMLogo.png', height: 70),
                 ],
               ),
             ),
@@ -234,12 +242,11 @@ class LoginPage extends StatelessWidget {
         ),
       ),
 
-      // Footer
       bottomNavigationBar: Container(
-        color: const Color.fromARGB(255, 37, 66, 255), // Verde como en el logo
+        color: const Color.fromARGB(255, 37, 66, 255),
         height: 50,
-        child: Center(
-          child: const Text(
+        child: const Center(
+          child: Text(
             "v.1.0.0",
             style: TextStyle(
               color: Colors.white,

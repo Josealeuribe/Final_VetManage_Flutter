@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_end/presentation/pages/clients/clients_page.dart';
 import 'package:project_end/presentation/pages/inventories/inventories_page.dart';
 import 'package:project_end/presentation/pages/orders/orders_page.dart';
-import 'package:project_end/presentation/pages/products/products_page.dart';
 import 'package:project_end/presentation/pages/providers/providers_page.dart';
 import 'package:project_end/presentation/pages/referrals/referrals_page.dart';
 import 'package:project_end/presentation/pages/reports/reports_page.dart';
@@ -23,6 +22,8 @@ import '../presentation/pages/recover_password/recover_password_page.dart';
 // Blocs
 import '../presentation/blocs/login/login_bloc.dart';
 import '../presentation/blocs/recover/recover_bloc.dart';
+
+import 'package:project_end/presentation/pages/profile/perfil_page.dart';
 
 class AppRoutes {
   static const String login = '/login';
@@ -42,6 +43,10 @@ class AppRoutes {
   static const String bodegas = '/bodegas';
   static const String traslados = '/traslados';
   static const String pagosAbonos = '/pagos_abonos';
+  static const String perfil = '/perfil';
+  static const String cambiarPassword = '/cambiar-password';
+  static const String configuracion = '/configuracion';
+  static const String ayuda = '/ayuda';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -69,13 +74,10 @@ class AppRoutes {
 
       // ----- Módulos -----
       case ordenes:
-        return MaterialPageRoute(builder: (_) => const OrdersPage());
+        return MaterialPageRoute(builder: (_) => const OrdenesPage());
 
       case proveedores:
         return MaterialPageRoute(builder: (_) => const ProveedoresPage());
-
-      case productos:
-        return MaterialPageRoute(builder: (_) => const ProductosPage());
 
       case existencias:
         return MaterialPageRoute(builder: (_) => const ExistenciasPage());
@@ -102,9 +104,14 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const TrasladosPage());
 
       case pagosAbonos:
-        return MaterialPageRoute(builder: (_) => const ReportesPage());
+        return MaterialPageRoute(builder: (_) => const PagosPage());
 
-      
+      case perfil:
+        return MaterialPageRoute(builder: (_) => const PerfilPage());
+
+      case cambiarPassword:
+        return MaterialPageRoute(builder: (_) => const RecoverPasswordPage());
+    
 
       default:
         return MaterialPageRoute(

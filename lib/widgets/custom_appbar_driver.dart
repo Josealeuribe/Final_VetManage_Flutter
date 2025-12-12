@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'custom_user_menu.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+class CustomAppBarDriver extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBarDriver({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       centerTitle: true,
 
-      // LOGO + TEXTO
+      // LOGO + TEXTO (tu diseño original)
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -32,19 +31,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
 
-      // SOLO ICONO DE USUARIO (como pediste)
+      // SOLO ICONO QUE CIERRA SESIÓN
       actions: [
-        CustomUserMenu(
-          onPerfil: () => Navigator.pushNamed(context, "/perfil"),
-          onPassword: () {}, // manejado dentro del modal del UserMenu
-          onLogout: () {
+        IconButton(
+          icon: const Icon(Icons.logout, color: Colors.white),
+          onPressed: () {
             Navigator.pushNamedAndRemoveUntil(
               context,
               "/login",
               (route) => false,
             );
           },
-        ),
+        )
       ],
     );
   }

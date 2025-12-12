@@ -6,9 +6,11 @@ class LoginState {
   final String? errorMessage;
   final bool isRecoverySuccess;
   final bool isRecoveryInProgress;
-  final bool isPasswordObscured;  // Control para mostrar/ocultar contraseña
+  final bool isPasswordObscured;
 
-  // Constructor con la nueva propiedad
+  /// NUEVO → rol del usuario
+  final String role; // "admin" o "conductor"
+
   LoginState({
     this.username = '',
     this.password = '',
@@ -17,10 +19,10 @@ class LoginState {
     this.errorMessage,
     this.isRecoverySuccess = false,
     this.isRecoveryInProgress = false,
-    this.isPasswordObscured = true, // Inicializa la contraseña como oculta
+    this.isPasswordObscured = true,
+    this.role = '', // Por defecto vacío
   });
 
-  // Método copyWith para actualizar el estado
   LoginState copyWith({
     String? username,
     String? password,
@@ -29,7 +31,8 @@ class LoginState {
     String? errorMessage,
     bool? isRecoverySuccess,
     bool? isRecoveryInProgress,
-    bool? isPasswordObscured,  // Para cambiar el estado de visibilidad de la contraseña
+    bool? isPasswordObscured,
+    String? role,
   }) {
     return LoginState(
       username: username ?? this.username,
@@ -39,7 +42,9 @@ class LoginState {
       errorMessage: errorMessage ?? this.errorMessage,
       isRecoverySuccess: isRecoverySuccess ?? this.isRecoverySuccess,
       isRecoveryInProgress: isRecoveryInProgress ?? this.isRecoveryInProgress,
-      isPasswordObscured: isPasswordObscured ?? this.isPasswordObscured,  // Actualiza este estado
+      isPasswordObscured:
+          isPasswordObscured ?? this.isPasswordObscured,
+      role: role ?? this.role,
     );
   }
 }
