@@ -16,6 +16,12 @@ dependencies:
   fl_chart: ^0.65.0
   intl: ^0.20.2
   signature: ^6.3.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/VSinFondo.png"
 
 dev_dependencies:
   flutter_test:
