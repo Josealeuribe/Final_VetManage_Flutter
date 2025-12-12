@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Páginas de módulos
-import 'package:project_end/presentation/pages/clients/clients_page.dart';
-import 'package:project_end/presentation/pages/inventories/inventories_page.dart';
-import 'package:project_end/presentation/pages/orders/orders_page.dart';
-import 'package:project_end/presentation/pages/products/products_page.dart';
-import 'package:project_end/presentation/pages/providers/providers_page.dart';
-import 'package:project_end/presentation/pages/referrals/referrals_page.dart';
-import 'package:project_end/presentation/pages/reports/reports_page.dart';
-import 'package:project_end/presentation/pages/role/role_page.dart';
-import 'package:project_end/presentation/pages/shopping/shopping_page.dart';
-import 'package:project_end/presentation/pages/transfers/transfers_page.dart';
-import 'package:project_end/presentation/pages/users/users_page.dart';
-import 'package:project_end/presentation/pages/warehouses/warehouses_page.dart';
+import 'package:v_manage/presentation/pages/reports/reports_page.dart';
+import 'package:v_manage/presentation/pages/inventories/inventories_page.dart';
+import 'package:v_manage/presentation/pages/orders/orders_page.dart';
+import 'package:v_manage/presentation/pages/products/products_page.dart';
+import 'package:v_manage/presentation/pages/providers/providers_page.dart';
+import 'package:v_manage/presentation/pages/referrals/referrals_page.dart';
+import 'package:v_manage/presentation/pages/clients/clients_page.dart';
+import 'package:v_manage/presentation/pages/role/role_page.dart';
+import 'package:v_manage/presentation/pages/shopping/shopping_page.dart';
+import 'package:v_manage/presentation/pages/transfers/transfers_page.dart';
+import 'package:v_manage/presentation/pages/users/users_page.dart';
+import 'package:v_manage/presentation/pages/warehouses/warehouses_page.dart';
 
 // Auth
 import '../presentation/pages/login/login_page.dart';

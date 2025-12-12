@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_end/widgets/custom_appbar.dart';
-import 'package:project_end/widgets/custom_bottom_nav.dart';
+import 'package:v_manage/widgets/custom_appbar.dart';
+import 'package:v_manage/widgets/custom_bottom_nav.dart';
 import 'traslado_detalle_page.dart'; // 👈 IMPORTANTE
 
 class TrasladosPage extends StatefulWidget {

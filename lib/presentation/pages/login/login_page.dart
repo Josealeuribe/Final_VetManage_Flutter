@@ -4,7 +4,6 @@ import '../../blocs/login/login_bloc.dart';
 import '../../blocs/login/login_event.dart';
 import '../../blocs/login/login_state.dart';
 import '../dashboard/dashboard_page.dart';
-import '../../blocs/recover/recover_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -16,7 +15,7 @@ class LoginPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(
-          backgroundColor: const Color.fromARGB(255, 37, 66, 255), // Color del header
+          backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Color del header
           automaticallyImplyLeading: false, // Elimina el botón de "volver"
         ),
       ),
@@ -236,11 +235,11 @@ class LoginPage extends StatelessWidget {
 
       // Footer
       bottomNavigationBar: Container(
-        color: const Color.fromARGB(255, 37, 66, 255), // Verde como en el logo
+        color: const Color.fromARGB(255, 42, 79, 189), // Verde como en el logo
         height: 50,
         child: Center(
           child: const Text(
-            "v.1.0.0",
+            "",
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,

@@ -53,11 +53,6 @@ class CustomBottomNav extends StatelessWidget {
       },
       {"icon": Icons.warehouse, "label": "Bodegas", "route": AppRoutes.bodegas},
       {
-        "icon": Icons.production_quantity_limits,
-        "label": "Productos",
-        "route": AppRoutes.productos,
-      },
-      {
         "icon": Icons.dashboard,
         "label": "Dashboard",
         "route": AppRoutes.dashboard,
@@ -66,7 +61,7 @@ class CustomBottomNav extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -92,7 +87,7 @@ class CustomBottomNav extends StatelessWidget {
                     CircleAvatar(
                       radius: 28,
                       backgroundColor: const Color.fromARGB(
-                        255, 44, 97, 255
+                        255, 42, 79, 189
                       ), // Fondo azul
                       child: Icon(
                         items[index]["icon"],
@@ -127,7 +122,7 @@ class CustomBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Cambié el fondo del contenedor a blanco, puedes poner el color que desees
+      backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Fondo azul
       currentIndex: currentIndex,
       onTap: (i) {
         if (i == 3) {
@@ -137,18 +132,20 @@ class CustomBottomNav extends StatelessWidget {
         }
       },
 
-      selectedItemColor: const Color.fromARGB(255, 44, 97, 255), // Íconos seleccionados en negro
-      unselectedItemColor: const Color.fromARGB(255, 44, 97, 255), // Íconos no seleccionados en negro
+      selectedItemColor: const Color.fromARGB(255, 0, 0, 0), // Íconos seleccionados en blanco
+      unselectedItemColor: Colors.black, // Íconos no seleccionados en negro
+
+      // Cambiar el texto a negro
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
 
       items: [
         BottomNavigationBarItem(
           icon: CircleAvatar(
-            backgroundColor: const Color.fromARGB(
-              255, 44, 97, 255
-            ), // Fondo negro para los íconos
+            backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Fondo azul
             child: Icon(
               Icons.dashboard_outlined,
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
               size: 28,
             ), // Ícono blanco
           ),
@@ -156,7 +153,7 @@ class CustomBottomNav extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: CircleAvatar(
-            backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+            backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Fondo azul
             child: Icon(
               Icons.swap_horiz,
               color: Colors.white,
@@ -167,7 +164,7 @@ class CustomBottomNav extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: CircleAvatar(
-            backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+            backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Fondo azul
             child: Icon(
               Icons.inventory,
               color: Colors.white,
@@ -178,7 +175,7 @@ class CustomBottomNav extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: CircleAvatar(
-            backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+            backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Fondo azul
             child: Icon(
               Icons.menu,
               color: Colors.white,

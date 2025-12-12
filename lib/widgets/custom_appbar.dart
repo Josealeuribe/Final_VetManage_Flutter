@@ -7,7 +7,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: const Color.fromARGB(255, 44, 97, 255), // Fondo negro
+      backgroundColor: const Color.fromARGB(255, 42, 79, 189), // Fondo negro
       automaticallyImplyLeading: false,
       centerTitle: true,
 
@@ -31,10 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
 
       actions: [
-        IconButton(
-          icon: const Icon(Icons.sync, color: Colors.white), // Botón blanco
-          onPressed: () {},
-        ),
+       
         IconButton(
           icon: const Icon(Icons.notifications, color: Colors.white), // Botón blanco
           onPressed: () {},
@@ -49,18 +46,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.pushNamed(context, "/perfil");
                 break;
 
-              case "password":
-                Navigator.pushNamed(context, "/cambiar-password");
-                break;
-
-              case "settings":
-                Navigator.pushNamed(context, "/configuracion");
-                break;
-
-              case "help":
-                Navigator.pushNamed(context, "/ayuda");
-                break;
-
               case "logout":
                 Navigator.pushNamedAndRemoveUntil(
                     context, "/login", (route) => false);
@@ -69,17 +54,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
 
           itemBuilder: (context) => [
-            const PopupMenuItem(
-                value: "profile", child: Text("Editar Perfil", style: TextStyle(color: Colors.black))),
-            const PopupMenuItem(
-                value: "password", child: Text("Cambiar Contraseña", style: TextStyle(color: Colors.black))),
-            const PopupMenuItem(
-                value: "settings", child: Text("Configuración", style: TextStyle(color: Colors.black))),
-            const PopupMenuItem(
-                value: "help", child: Text("Ayuda", style: TextStyle(color: Colors.black))),
-
-            const PopupMenuDivider(),
-
             const PopupMenuItem(
               value: "logout",
               child: Row(

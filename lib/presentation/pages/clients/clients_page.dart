@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_end/presentation/pages/clients/clientes_detalle_page.dart';
-import 'package:project_end/widgets/custom_appbar.dart';
-import 'package:project_end/widgets/custom_bottom_nav.dart';
+import 'package:v_manage/presentation/pages/clients/clientes_detalle_page.dart';
+import 'package:v_manage/widgets/custom_appbar.dart';
+import 'package:v_manage/widgets/custom_bottom_nav.dart';
 
 class ClientesPage extends StatefulWidget {
   const ClientesPage({super.key});
